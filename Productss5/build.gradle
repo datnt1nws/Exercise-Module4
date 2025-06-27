@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.springframework.boot' version '2.7.18'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = '17' // Đặt Java 17 để khớp với JDK
+targetCompatibility = '17'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    // Java EE 8 Servlet API
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+    // Spring và các dependency
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.18'
+    implementation 'org.springframework:spring-webmvc:5.3.23'
+    implementation 'org.thymeleaf:thymeleaf-spring5:3.1.1.RELEASE'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
+    implementation 'org.hibernate:hibernate-core:5.6.10.Final'
+    implementation 'mysql:mysql-connector-java:8.0.30'
+    // Test
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+war {
+    archiveFileName = 'ProductDemo-1.0-SNAPSHOT.war'
+}

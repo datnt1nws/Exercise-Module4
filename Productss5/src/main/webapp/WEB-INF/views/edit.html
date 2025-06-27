@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Chỉnh sửa sản phẩm</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <h2>Chỉnh sửa sản phẩm</h2>
+  <form th:action="@{/products/edit/{id}(id=${product.id})}" th:object="${product}" method="post">
+    <div class="form-group">
+      <label>Tên sản phẩm</label>
+      <input type="text" th:field="*{product.name}" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label>Giá</label>
+      <input type="number" step="0.01" th:field="*{product.price}" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label>Mô tả</label>
+      <textarea th:field="*{product.description}" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Nhà sản xuất</label>
+      <input type="text" th:field="*{product.manufacturer}" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-success">Lưu</button>
+    <a href="/products" class="btn btn-secondary">Hủy</a>
+  </form>
+</div>
+</body>
+</html>
